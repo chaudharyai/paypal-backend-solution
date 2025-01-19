@@ -1,0 +1,16 @@
+const moment = require("moment-timezone");
+
+// Function to get current time in UTC
+function getUTCTimestamp() {
+  return moment().utc().format(); // Example: 2025-01-19T12:00:00Z
+}
+
+// Function to convert UTC time to the user's local timezone
+function convertToLocalTime(utcTime, userTimezone) {
+  return moment(utcTime).tz(userTimezone).format("YYYY-MM-DD HH:mm:ss"); // Example: Asia/Dubai
+}
+
+// Example Usage
+const utcTime = getUTCTimestamp();
+const localTime = convertToLocalTime(utcTime, "Asia/Dubai");
+console.log(`UTC Time: ${utcTime}, Local Time: ${localTime}`);
