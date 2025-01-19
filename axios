@@ -1,0 +1,20 @@
+const axios = require("axios");
+
+// Function to convert currency
+async function convertCurrency(amount, fromCurrency, toCurrency) {
+  try {
+    const response = await axios.get(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+    const rate = response.data.rates[toCurrency];
+    if (!rate) throw new Error("Currency not supported.");
+    return amount * rate;
+  } catch (error) {
+    console.error("Currency Conversion Error:", error.message);
+    throw error;
+  }
+}
+
+// Example Usage
+(async () => {
+  const amountInUSD = await convertCurrency(100, "EUR", "USD");
+  console.log(`Converted Amount: ${amountInUSD} USD`);
+})();
