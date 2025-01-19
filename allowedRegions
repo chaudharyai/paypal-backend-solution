@@ -1,0 +1,14 @@
+const allowedRegions = ["US", "AE", "UK", "TH", "JP", "SG"]; // Add supported regions
+
+function validateRegion(userRegion) {
+  if (!allowedRegions.includes(userRegion)) {
+    throw new Error(`Region ${userRegion} is not supported.`);
+  }
+}
+
+// Example Usage
+try {
+  validateRegion("IN"); // Throws error if region is not in the list
+} catch (error) {
+  console.error(error.message);
+}
